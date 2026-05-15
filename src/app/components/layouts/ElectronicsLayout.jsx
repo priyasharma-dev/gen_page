@@ -11,7 +11,7 @@ export default function ElectronicsLayout({ children }) {
                 Electronics Mode
               </h1>
               <p className="break-words text-xs text-gray-400">
-                Powered by UI Engine
+                Powered by UI 
               </p>
             </div>
           </div>
