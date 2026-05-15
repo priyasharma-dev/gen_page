@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import {
   ArrowRight,
   ExternalLink,
+  MoreVertical,
   Star,
 } from "lucide-react";
 
@@ -31,7 +32,73 @@ export default function RightPanel() {
 
   return (
     <div className="flex w-full min-w-0 flex-col gap-4 overflow-x-hidden p-5">
-      {selectedCard ? (
+      {selectedCard?.type === "electronicsProduct" ? (
+        <div className="rounded-2xl border border-[#E5E7EB] bg-[#F8FAFC] p-4 shadow-[0_18px_44px_rgba(15,23,42,0.07)]">
+          <div className="flex items-center justify-between gap-3 border-b border-[#E5E7EB] pb-4">
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="flex -space-x-2">
+                {["F", "A", "M"].map((site, index) => (
+                  <span
+                    key={site}
+                    className={`flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#F8FAFC] text-xs font-bold shadow-sm ${
+                      index === 0
+                        ? "bg-[#FFE8A3] text-[#A15C00]"
+                        : index === 1
+                          ? "bg-[#FFE6C7] text-[#9A4A08]"
+                          : "bg-[#FFE7F5] text-[#E00086]"
+                    }`}
+                  >
+                    {site}
+                  </span>
+                ))}
+              </div>
+              <p className="text-lg font-semibold text-[#111827]">9 sites</p>
+            </div>
+
+            <button className="flex h-9 w-9 items-center justify-center rounded-full text-[#6B7280] transition hover:bg-white">
+              <MoreVertical size={18} />
+            </button>
+          </div>
+
+          <div className="divide-y divide-[#E5E7EB]">
+            {(selectedCard.sources || []).map((site) => (
+              <article
+                key={site.id}
+                className="grid grid-cols-[1fr_76px] gap-3 py-4"
+              >
+                <div className="min-w-0">
+                  <h3 className="line-clamp-2 text-[15px] font-semibold leading-5 text-[#111827]">
+                    {site.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-[12px] leading-5 text-[#7B8190]">
+                    {site.snippet}
+                  </p>
+                  <p className="mt-3 text-[13px] font-semibold text-[#111827]">
+                    {site.source}
+                  </p>
+                </div>
+
+                <div className="relative">
+                  <div className="flex h-[76px] w-[76px] items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white p-2">
+                    <img
+                      src={selectedCard.image}
+                      alt={selectedCard.title}
+                      className="h-full w-full rounded-xl object-contain"
+                    />
+                  </div>
+                  <button className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#F8FAFC] text-[#6B7280]">
+                    <MoreVertical size={16} />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <button className="mt-3 h-11 w-full rounded-full bg-[#E9EDF3] text-sm font-medium text-[#111827] transition hover:bg-[#DEE5EE]">
+            Show All
+          </button>
+        </div>
+      ) : selectedCard ? (
         <div className="rounded-[24px] border border-[#E6EBF3] bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,255,0.92))] p-4 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
           <div className="flex min-w-0 items-start gap-3">
             {selectedCard.image ? (
