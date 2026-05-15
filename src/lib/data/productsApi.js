@@ -15,6 +15,10 @@ export async function fetchProducts(category = "all") {
       url = "https://dummyjson.com/products?limit=10";
     }
 
+    if (category === "skincare") {
+      url = "https://dummyjson.com/products/category/beauty";
+    }
+
     const res = await fetch(url);
     const data = await res.json();
 

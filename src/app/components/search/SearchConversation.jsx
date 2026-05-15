@@ -21,6 +21,7 @@ const thinkingSteps = [
 
 export default function SearchConversation({
   query,
+  resolvedQuery,
   loading,
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -91,6 +92,8 @@ export default function SearchConversation({
             </div>
           ) : (
             <SearchResultStream
+              query={query}
+              resolvedQuery={resolvedQuery}
             />
           )}
         </div>

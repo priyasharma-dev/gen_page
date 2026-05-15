@@ -19,6 +19,12 @@ export function entityExtractor(queryData) {
     "samsung",
     "zara",
     "myntra",
+    "cerave",
+    "cetaphil",
+    "minimalist",
+    "theordinary",
+    "ordinary",
+    "neutrogena",
     "h&m",
     "hm",
     "mango",
@@ -36,7 +42,13 @@ export function entityExtractor(queryData) {
 
   for (const word of normalizedKeywordVariants) {
     if (brands.includes(word)) {
-      brand = word === "hm" ? "h&m" : word;
+      if (word === "hm") {
+        brand = "h&m";
+      } else if (word === "ordinary" || word === "theordinary") {
+        brand = "the ordinary";
+      } else {
+        brand = word;
+      }
       break;
     }
   }

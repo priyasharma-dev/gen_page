@@ -4,9 +4,42 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Sparkles } from "lucide-react";
 
+import DefaultLayout from "@/app/components/layouts/DefaultLayout";
+import ElectronicsLayout from "@/app/components/layouts/ElectronicsLayout";
+import FashionLayout from "@/app/components/layouts/FashionLayout";
+import FoodLayout from "@/app/components/layouts/FoodLayout";
+import NewsLayout from "@/app/components/layouts/NewsLayout";
+import SkincareLayout from "@/app/components/layouts/SkincareLayout";
 import { resolveQuery } from "@/lib/query/resolver";
 import { buildSchema } from "@/lib/schema/builder";
 import { renderUI } from "@/lib/renderer/renderUI";
+
+function SearchLayoutFrame({
+  layoutName,
+  children,
+}) {
+  switch (layoutName) {
+    case "FashionLayout":
+      return <FashionLayout>{children}</FashionLayout>;
+    case "ElectronicsLayout":
+      return <ElectronicsLayout>{children}</ElectronicsLayout>;
+    case "FoodLayout":
+      return <FoodLayout>{children}</FoodLayout>;
+    case "NewsLayout":
+      return <NewsLayout>{children}</NewsLayout>;
+    case "SkincareLayout":
+      return <SkincareLayout>{children}</SkincareLayout>;
+    case "DefaultLayout":
+      return <DefaultLayout>{children}</DefaultLayout>;
+    default:
+      if (typeof window !== "undefined") {
+        console.warn(
+          `[ANSI] Missing layout "${layoutName}". Falling back to DefaultLayout.`
+        );
+      }
+      return <DefaultLayout>{children}</DefaultLayout>;
+  }
+}
 
 export default function SearchPage() {
   const params = useSearchParams();
@@ -14,6 +47,7 @@ export default function SearchPage() {
   const query = params.get("query") || "";
 
   const [schema, setSchema] = useState(null);
+  const [resolved, setResolved] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -36,12 +70,14 @@ export default function SearchPage() {
         const built = await buildSchema(resolved);
 
         if (!cancelled) {
+          setResolved(resolved);
           setSchema(built);
         }
       } catch (error) {
         console.error(error);
 
         if (!cancelled) {
+          setResolved(null);
           setSchema(null);
         }
       } finally {
@@ -112,7 +148,11 @@ export default function SearchPage() {
             </div>
           ) : schema ? (
             <div className="overflow-hidden">
-              {renderUI(schema)}
+              <SearchLayoutFrame
+                layoutName={schema?.layout || resolved?.layout || "DefaultLayout"}
+              >
+                {renderUI(schema)}
+              </SearchLayoutFrame>
             </div>
           ) : (
             <div className="rounded-[32px] border border-dashed border-gray-200 bg-white/75 p-14 text-center shadow-[0_10px_40px_rgba(0,0,0,0.04)] backdrop-blur-xl">

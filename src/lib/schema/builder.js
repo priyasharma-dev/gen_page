@@ -17,7 +17,8 @@ export async function buildSchema(resolved) {
   if (
     category === "electronics" ||
     category === "fashion" ||
-    category === "food"
+    category === "food" ||
+    category === "skincare"
   ) {
     products = await fetchProducts(category);
   }

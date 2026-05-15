@@ -9,35 +9,56 @@ import {
 import ExpandableDescription from "./ExpandableDescription";
 
 export default function DynamicResultCard({
+  category = "generic",
   product,
   index = 0,
+  onSelect,
 }) {
+  const isFashion = category === "fashion";
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -4 }}
       transition={{
         delay: index * 0.04,
         duration: 0.35,
       }}
+      onClick={() => onSelect?.(product)}
       className="
         group
         relative
         w-full
         overflow-hidden
         rounded-[28px]
-        border border-[#ECEFF4]
-        bg-white
+        border
         p-2.5
         shadow-[0_4px_20px_rgba(15,23,42,0.04)]
         transition-all
         duration-300
-        hover:border-[#D9E5FF]
         hover:shadow-[0_18px_40px_rgba(37,99,235,0.08)]
+        cursor-pointer
       "
+      style={
+        isFashion
+          ? {
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,245,249,0.88))",
+              borderColor: "rgba(235,221,232,0.9)",
+            }
+          : {
+              background: "#ffffff",
+              borderColor: "#ECEFF4",
+            }
+      }
     >
       {/* image */}
-      <div className="relative aspect-square overflow-hidden rounded-2xl bg-[#F5F7FA]">
+      <div
+        className={`relative overflow-hidden rounded-2xl bg-[#F5F7FA] ${
+          isFashion ? "aspect-[4/5]" : "aspect-square"
+        }`}
+      >
         <motion.img
           src={product.image}
           alt={product.title}
@@ -60,6 +81,11 @@ export default function DynamicResultCard({
           "
         >
           <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onSelect?.(product);
+            }}
             className="
               flex items-center gap-2
               rounded-full
@@ -100,6 +126,10 @@ export default function DynamicResultCard({
 
         {/* wishlist */}
         <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
           className="
             absolute right-2.5 top-2.5
             flex h-8 w-8 items-center justify-center
@@ -123,6 +153,23 @@ export default function DynamicResultCard({
         <p className="text-[11px] font-medium uppercase tracking-wide text-[#94A3B8]">
           {product.brand}
         </p>
+
+        {product.tags?.length ? (
+          <div className="mt-2 flex min-w-0 flex-wrap gap-2">
+            {product.tags.map((tag) => (
+              <span
+                key={tag}
+                className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${
+                  isFashion
+                    ? "bg-white/80 text-[#9A4D7A]"
+                    : "bg-[#F8FAFC] text-[#64748B]"
+                }`}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
 
         {/* title */}
         <h4
@@ -174,6 +221,11 @@ export default function DynamicResultCard({
           </p>
 
           <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onSelect?.(product);
+            }}
             className="
               rounded-xl
               border border-[#E5E7EB]
@@ -189,7 +241,7 @@ export default function DynamicResultCard({
               hover:text-white
             "
           >
-            View
+            View details
           </button>
         </div>
 

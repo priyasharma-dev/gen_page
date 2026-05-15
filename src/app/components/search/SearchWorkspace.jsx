@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   MessageSquareText,
@@ -7,7 +8,7 @@ import {
   SearchCheck,
 } from "lucide-react";
 
-import { heroSuggestions } from "@/lib/data/mockContent";
+import { getHeroSuggestions } from "@/lib/data/mockContent";
 
 import ConversationalSearchLayout from "./ConversationalSearchLayout";
 import SearchConversation from "./SearchConversation";
@@ -32,12 +33,18 @@ const landingCards = [
 
 export default function SearchWorkspace({
   activeQuery,
+  resolvedQuery,
   query,
   setQuery,
   onSearch,
   loading,
 }) {
   const hasQuery = Boolean(activeQuery?.trim());
+  const activeCategory = resolvedQuery?.category || "generic";
+  const heroSuggestions = useMemo(
+    () => getHeroSuggestions(activeCategory),
+    [activeCategory]
+  );
 
   return (
     <ConversationalSearchLayout
@@ -100,9 +107,10 @@ export default function SearchWorkspace({
         </div>
       }
       thread={
-        <div className="mx-auto w-full max-w-[760px]">
+        <div className="mx-auto w-full max-w-[860px]">
           <SearchConversation
             query={activeQuery}
+            resolvedQuery={resolvedQuery}
             loading={loading}
           />
         </div>
