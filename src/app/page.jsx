@@ -1,14 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { useSearchUI } from "@/app/components/search/SearchUIContext";
 import SearchWorkspace from "@/app/components/search/SearchWorkspace";
+import { resolveQuery } from "@/lib/query/resolver";
 
 export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { resetRightPanel } = useSearchUI();
   const urlQuery = searchParams.get("q") || "";
+  const resolvedQuery = useMemo(() => {
+    if (!urlQuery.trim()) {
+      return null;
+    }
+
+    return resolveQuery(urlQuery);
+  }, [urlQuery]);
 
   const [inputValue, setInputValue] = useState(urlQuery);
   const [loading, setLoading] = useState(false);
@@ -18,6 +28,10 @@ export default function Page() {
       setInputValue(urlQuery);
     });
   }, [urlQuery]);
+
+  useEffect(() => {
+    resetRightPanel();
+  }, [urlQuery, resetRightPanel]);
 
   useEffect(() => {
     let active = true;
@@ -71,6 +85,7 @@ export default function Page() {
   return (
     <SearchWorkspace
       activeQuery={urlQuery}
+      resolvedQuery={resolvedQuery}
       query={inputValue}
       setQuery={handleInputChange}
       onSearch={handleSearch}

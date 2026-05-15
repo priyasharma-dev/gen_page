@@ -262,9 +262,9 @@ export const conversationalReply = {
 export const curatedDressSections = [
   {
     id: "section-1",
-    title: " Trendy & Aesthetic (Pinterest / Soft Girl Vibe)",
+    title: "Trending Looks",
     description:
-      "These give that soft aesthetic / Instagram vibe you like. Great for pics, brunch, casual dates.",
+      "High-impact outfits with directional silhouettes, elevated textures, and social-first energy.",
     products: [
       {
         id: "c1",
@@ -276,6 +276,7 @@ export const curatedDressSections = [
         reviews: "128",
         badge: "Trending",
         image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
+        tags: ["Soft girl", "Event", "Trending"],
       },
       {
         id: "c2",
@@ -286,6 +287,7 @@ export const curatedDressSections = [
         rating: "4.6",
         reviews: "128",
         image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
+        tags: ["Floral", "Vacation", "Daywear"],
       },
       {
         id: "c3",
@@ -296,14 +298,15 @@ export const curatedDressSections = [
         rating: "4.6",
         reviews: "128",
         image: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93",
+        tags: ["Statement", "Evening", "Premium"],
       },
     ],
   },
   {
     id: "section-2",
-    title: "Casual & Everyday Cute Dresses",
+    title: "Celebrity Inspired",
     description:
-      "Easy silhouettes for regular wear, travel days, and coffee plans without losing the fashion vibe.",
+      "Runway-adjacent pieces with polished color stories, refined drape, and statement finish.",
     products: [
       {
         id: "c4",
@@ -315,6 +318,7 @@ export const curatedDressSections = [
         reviews: "108",
         badge: "Trending",
         image: "https://images.unsplash.com/photo-1483985988355-763728e1935b",
+        tags: ["Casual", "Weekend", "Easy style"],
       },
       {
         id: "c5",
@@ -325,6 +329,7 @@ export const curatedDressSections = [
         rating: "4.7",
         reviews: "211",
         image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
+        tags: ["Printed", "Brunch", "Popular"],
       },
       {
         id: "c6",
@@ -335,10 +340,179 @@ export const curatedDressSections = [
         rating: "4.6",
         reviews: "152",
         image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
+        tags: ["Midi", "Refined", "Versatile"],
+      },
+    ],
+  },
+  {
+    id: "section-3",
+    title: "Minimal Fits",
+    description:
+      "Clean tailoring, tonal palettes, and premium basics designed for effortless repeat wear.",
+    products: [
+      {
+        id: "c7",
+        brand: "COS",
+        title: "Structured Slip Dress",
+        subtitle: "Minimal Edit",
+        price: "₹3,890",
+        rating: "4.8",
+        reviews: "96",
+        badge: "Quiet Luxury",
+        image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
+        description: "Bias-cut silhouette with matte drape and subtle tailoring for everyday polish.",
+        tags: ["Minimal", "Quiet luxury", "Editor pick"],
+      },
+      {
+        id: "c8",
+        brand: "Arket",
+        title: "Column Knit Set",
+        subtitle: "Neutral Dressing",
+        price: "₹4,290",
+        rating: "4.7",
+        reviews: "132",
+        image: "https://images.unsplash.com/photo-1483985988355-763728e1935b",
+        description: "Refined knit layers that balance softness, shape, and all-day comfort.",
+        tags: ["Tonal", "Layered", "Premium knit"],
+      },
+      {
+        id: "c9",
+        brand: "Mango",
+        title: "Sand Satin Midi",
+        subtitle: "Day-to-Night",
+        price: "₹4,890",
+        rating: "4.7",
+        reviews: "118",
+        image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
+        description: "Satin texture with a pared-back neckline for understated luxury styling.",
+        tags: ["Satin", "Evening", "Minimal"],
+      },
+    ],
+  },
+  {
+    id: "section-4",
+    title: "Streetwear",
+    description:
+      "Relaxed proportions, bold layering, and city-ready styling for everyday statement looks.",
+    products: [
+      {
+        id: "c10",
+        brand: "H&M",
+        title: "Utility Denim Set",
+        subtitle: "Street Layer",
+        price: "₹2,990",
+        rating: "4.5",
+        reviews: "202",
+        badge: "City Pick",
+        image: "https://images.unsplash.com/photo-1506629905607-d9a317f6f73c",
+        description: "Boxy structure and easy layering potential for casual street styling.",
+        tags: ["Utility", "Relaxed", "Street"],
+      },
+      {
+        id: "c11",
+        brand: "Zara",
+        title: "Oversized Blazer Dress",
+        subtitle: "Street Tailoring",
+        price: "₹5,190",
+        rating: "4.6",
+        reviews: "154",
+        image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
+        description: "Sharp blazer lines softened with a modern mini length and bold shoulder.",
+        tags: ["Blazer", "Fashion week", "Sharp"],
+      },
+      {
+        id: "c12",
+        brand: "Urbanic",
+        title: "Cargo Midi Hybrid",
+        subtitle: "Utility Chic",
+        price: "₹2,790",
+        rating: "4.4",
+        reviews: "190",
+        image: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93",
+        description: "Functional detailing with fashion-forward proportion for everyday edge.",
+        tags: ["Cargo", "Utility", "Citywear"],
+      },
+    ],
+  },
+  {
+    id: "section-5",
+    title: "Luxury Essentials",
+    description:
+      "Investment-style staples with premium materials, longer wearability, and elevated styling value.",
+    products: [
+      {
+        id: "c13",
+        brand: "Ted Baker",
+        title: "Silk Evening Column",
+        subtitle: "Occasion Luxury",
+        price: "₹8,990",
+        rating: "4.9",
+        reviews: "84",
+        badge: "Premium",
+        image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f",
+        description: "Fluid silk construction with minimal seams and elegant evening movement.",
+        tags: ["Silk", "Luxury", "Occasion"],
+      },
+      {
+        id: "c14",
+        brand: "Karen Millen",
+        title: "Tailored Cream Set",
+        subtitle: "Luxury Core",
+        price: "₹7,290",
+        rating: "4.8",
+        reviews: "101",
+        image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
+        description: "Soft structured tailoring with refined neutrals and high repeat styling value.",
+        tags: ["Tailored", "Refined", "Investment"],
+      },
+      {
+        id: "c15",
+        brand: "Massimo Dutti",
+        title: "Linen Signature Dress",
+        subtitle: "Resort Luxury",
+        price: "₹6,490",
+        rating: "4.7",
+        reviews: "112",
+        image: "https://images.unsplash.com/photo-1483985988355-763728e1935b",
+        description: "Breathable linen texture paired with a sophisticated, resort-inspired silhouette.",
+        tags: ["Linen", "Resort", "Timeless"],
       },
     ],
   },
 ];
+
+const categoryHeroSuggestions = {
+  generic: [
+    "Best sunscreen for dry skin",
+    "Top smartphones under ₹30000",
+    "Western dresses for woman",
+    "Burger places near me",
+  ],
+  fashion: [
+    "Western dresses for woman",
+    "Summer outfits under ₹1500",
+    "Best brunch dresses",
+    "Cute casual dresses",
+  ],
+  electronics: [
+    "Best phones under ₹30000",
+    "Top laptops for coding",
+    "Wireless earbuds with ANC",
+    "Best camera for travel vlogging",
+  ],
+  food: [
+    "Burger near me",
+    "Best pizza in Delhi",
+    "Healthy lunch bowls nearby",
+    "Late night cafe recommendations",
+  ],
+  skincare: [
+    "Best moisturizer for dry skin",
+    "Vitamin C serum for glowing skin",
+    "Gentle cleanser for oily skin",
+    "Best sunscreen for daily use",
+  ],
+};
 
 export const fallbackProducts = {
   electronics: [
@@ -365,4 +539,254 @@ export const fallbackProducts = {
     { id: "fd5", title: "Soba Salad Plate", price: 13, thumbnail: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd", badge: "Fresh", description: "Light umami-forward lunch with seasonal greens." },
     { id: "fd6", title: "Tandoori Grill Platter", price: 21, thumbnail: "https://images.unsplash.com/photo-1559847844-5315695dadae", badge: "Shareable", description: "Mixed skewers designed for group ordering." },
   ],
+  skincare: [
+    { id: "sk1", title: "Barrier Repair Moisturizer", price: 18, thumbnail: "https://images.unsplash.com/photo-1556228578-8c89e6adf883", badge: "Hydration", description: "Ceramide-rich daily moisturizer for dry and sensitive skin." },
+    { id: "sk2", title: "Gentle Gel Cleanser", price: 14, thumbnail: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b", badge: "Daily Use", description: "Low-foam cleanser that removes sunscreen without stripping the skin." },
+    { id: "sk3", title: "Vitamin C Glow Serum", price: 22, thumbnail: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be", badge: "Brightening", description: "Lightweight antioxidant serum designed for dull and uneven skin tone." },
+    { id: "sk4", title: "Mineral Sunscreen SPF 50", price: 19, thumbnail: "https://images.unsplash.com/photo-1556228578-dd6a5f0b29b6", badge: "Protection", description: "Non-greasy SPF with broad-spectrum UV protection for daily wear." },
+    { id: "sk5", title: "Niacinamide Balance Serum", price: 16, thumbnail: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9", badge: "Oil Control", description: "Refines texture and supports calmer skin in humid weather." },
+    { id: "sk6", title: "Overnight Recovery Cream", price: 24, thumbnail: "https://images.unsplash.com/photo-1612817288484-6f916006741a", badge: "Night Routine", description: "Comforting overnight cream focused on barrier recovery and softness." },
+  ],
 };
+
+function formatFallbackProduct(product) {
+  return {
+    id: product.id,
+    brand: product.brand || product.badge || "Recommended",
+    title: product.title,
+    subtitle: product.subtitle || product.badge || "AI matched result",
+    price:
+      typeof product.price === "number" ? `₹${product.price}` : product.price,
+    rating: product.rating || "4.6",
+    reviews: product.reviews || "128 reviews",
+    badge: product.badge,
+    image: product.image || product.thumbnail,
+    description: product.description,
+  };
+}
+
+const searchContentByCategory = {
+  fashion: {
+    topRatedProducts,
+    topWebsites,
+    recentQueries: recentQueriesList,
+    relatedSearches,
+    topSources,
+    conversationalReply: {
+      intro:
+        "I found strong western-wear matches across top fashion platforms. Based on trend velocity, price bands, and ratings, here are the best fashion results to browse first.",
+    },
+    sections: curatedDressSections,
+  },
+  electronics: {
+    topRatedProducts: fallbackProducts.electronics.slice(0, 3).map((product) => ({
+      id: product.id,
+      title: product.title,
+      price: `₹${product.price}`,
+      rating: "4.7",
+      reviews: "214",
+      image: product.thumbnail,
+      brand: product.badge || "Tech",
+    })),
+    topWebsites: [
+      { rank: 1, name: "Croma", domain: "croma.com", rating: "4.7" },
+      { rank: 2, name: "Reliance Digital", domain: "reliancedigital.in", rating: "4.6" },
+      { rank: 3, name: "Amazon Tech", domain: "amazon.in", rating: "4.7" },
+    ],
+    recentQueries: [
+      { label: "Best phones under ₹30000", time: "Just now" },
+      { label: "Laptop for engineering students", time: "1h ago" },
+      { label: "Wireless earbuds ANC", time: "Yesterday" },
+    ],
+    relatedSearches: [
+      "Best smartphones for camera",
+      "Gaming laptops under ₹80000",
+      "Top budget earbuds",
+      "Best smartwatch for fitness",
+    ],
+    topSources: [
+      { title: "GSMArena specs", domain: "gsmarena.com", note: "Benchmark and hardware depth" },
+      { title: "Croma listings", domain: "croma.com", note: "Retail availability and pricing" },
+      { title: "YouTube tech reviews", domain: "youtube.com", note: "Hands-on comparisons" },
+      { title: "Amazon buyer reviews", domain: "amazon.in", note: "Real ownership feedback" },
+    ],
+    conversationalReply: {
+      intro:
+        "I mapped the strongest electronics results by comparing specs, price-to-performance, and review sentiment. These picks should help you narrow down the best device faster.",
+    },
+    sections: [
+      {
+        id: "electronics-1",
+        title: "Top electronics picks",
+        description:
+          "Balanced devices with strong ratings, good long-term value, and reliable performance.",
+        products: fallbackProducts.electronics.slice(0, 3).map(formatFallbackProduct),
+      },
+      {
+        id: "electronics-2",
+        title: "Worth comparing next",
+        description:
+          "These alternatives stand out if you care more about portability, cameras, or battery life.",
+        products: fallbackProducts.electronics.slice(3, 6).map(formatFallbackProduct),
+      },
+    ],
+  },
+  food: {
+    topRatedProducts: recipeItems.slice(0, 3).map((item, index) => ({
+      id: item.id,
+      title: item.title,
+      price: item.location,
+      rating: item.rating,
+      reviews: `${120 + index * 18}`,
+      image: item.image,
+      brand: item.category,
+    })),
+    topWebsites: [
+      { rank: 1, name: "Zomato", domain: "zomato.com", rating: "4.7" },
+      { rank: 2, name: "Swiggy", domain: "swiggy.com", rating: "4.6" },
+      { rank: 3, name: "Google Maps", domain: "maps.google.com", rating: "4.6" },
+    ],
+    recentQueries: [
+      { label: "Burger near me", time: "Just now" },
+      { label: "Best pizza in Delhi", time: "2h ago" },
+      { label: "Healthy lunch spots", time: "Yesterday" },
+    ],
+    relatedSearches: [
+      "Best cafes nearby",
+      "Late night food delivery",
+      "Top rated pizza places",
+      "Healthy bowls near me",
+    ],
+    topSources: [
+      { title: "Zomato restaurant ranking", domain: "zomato.com", note: "Ratings and cuisine filters" },
+      { title: "Google Maps reviews", domain: "google.com", note: "Local proof and photos" },
+      { title: "Swiggy popular picks", domain: "swiggy.com", note: "Delivery-friendly options" },
+      { title: "Instagram food creators", domain: "instagram.com", note: "Trend and discovery signal" },
+    ],
+    conversationalReply: {
+      intro:
+        "I scanned high-rated food options, local review signals, and cuisine trends to surface the best restaurant-style matches for your search.",
+    },
+    sections: [
+      {
+        id: "food-1",
+        title: "Best food matches nearby",
+        description:
+          "High-rated dishes and restaurant picks that fit quick discovery and easy ordering.",
+        products: recipeItems.slice(0, 4).map((item) => ({
+          id: item.id,
+          brand: item.location,
+          title: item.title,
+          subtitle: item.category,
+          price: item.location,
+          rating: item.rating,
+          reviews: "Local favorite",
+          image: item.image,
+          description: `${item.category} favorite with strong local ratings and repeat orders.`,
+        })),
+      },
+      {
+        id: "food-2",
+        title: "More local favorites",
+        description:
+          "Great follow-up options if you want more variety across comfort food, cafes, and shareables.",
+        products: recipeItems.slice(4, 8).map((item) => ({
+          id: item.id,
+          brand: item.location,
+          title: item.title,
+          subtitle: item.category,
+          price: item.location,
+          rating: item.rating,
+          reviews: "Popular now",
+          image: item.image,
+          description: `${item.category} pick with dependable taste, ambience, and convenience.`,
+        })),
+      },
+    ],
+  },
+  skincare: {
+    topRatedProducts: fallbackProducts.skincare.slice(0, 3).map((product) => ({
+      id: product.id,
+      title: product.title,
+      price: `₹${product.price}`,
+      rating: "4.8",
+      reviews: "312",
+      image: product.thumbnail,
+      brand: product.badge || "Skincare",
+    })),
+    topWebsites: [
+      { rank: 1, name: "Nykaa", domain: "nykaa.com", rating: "4.7" },
+      { rank: 2, name: "Tira", domain: "tira.com", rating: "4.6" },
+      { rank: 3, name: "Smytten", domain: "smytten.com", rating: "4.5" },
+    ],
+    recentQueries: [
+      { label: "Best moisturizer for dry skin", time: "Just now" },
+      { label: "Cerave cleanser", time: "1h ago" },
+      { label: "Daily sunscreen for oily skin", time: "Yesterday" },
+    ],
+    relatedSearches: [
+      "Best niacinamide serum",
+      "Gentle cleanser for acne-prone skin",
+      "Sunscreen without white cast",
+      "Night cream for barrier repair",
+    ],
+    topSources: [
+      { title: "Dermatologist ingredient guides", domain: "healthline.com", note: "Ingredient-level context" },
+      { title: "Nykaa skincare ranking", domain: "nykaa.com", note: "Popular products and reviews" },
+      { title: "Reddit skincare threads", domain: "reddit.com", note: "Routine feedback from users" },
+      { title: "INCIDecoder", domain: "incidecoder.com", note: "Formula and ingredient breakdown" },
+    ],
+    conversationalReply: {
+      intro:
+        "I prioritized skincare products by ingredient fit, skin-type relevance, and user review quality. These results are the strongest starting points for a practical routine.",
+    },
+    sections: [
+      {
+        id: "skincare-1",
+        title: "Routine starters",
+        description:
+          "Core products that usually make the biggest difference first: cleanse, hydrate, protect.",
+        products: fallbackProducts.skincare.slice(0, 3).map(formatFallbackProduct),
+      },
+      {
+        id: "skincare-2",
+        title: "Targeted treatment picks",
+        description:
+          "Useful next-step products for glow, texture refinement, oil balance, and overnight recovery.",
+        products: fallbackProducts.skincare.slice(3, 6).map(formatFallbackProduct),
+      },
+    ],
+  },
+  clarification: {
+    topRatedProducts: [],
+    topWebsites: [],
+    recentQueries: [],
+    relatedSearches: categoryHeroSuggestions.generic,
+    topSources: [],
+    conversationalReply: {
+      intro:
+        "I need a bit more context to route this search confidently. Try mentioning the domain, product type, or goal so I can show the right results.",
+    },
+    sections: [],
+  },
+  generic: {
+    topRatedProducts: [],
+    topWebsites: [],
+    recentQueries: [],
+    relatedSearches: categoryHeroSuggestions.generic,
+    topSources: [],
+    conversationalReply: {
+      intro:
+        "I can search across skincare, electronics, food, and fashion. Add a product type or goal and I’ll route you to the right result set.",
+    },
+    sections: [],
+  },
+};
+
+export function getHeroSuggestions(category = "generic") {
+  return categoryHeroSuggestions[category] || categoryHeroSuggestions.generic;
+}
+
+export function getSearchExperienceContent(category = "generic") {
+  return searchContentByCategory[category] || searchContentByCategory.generic;
+}

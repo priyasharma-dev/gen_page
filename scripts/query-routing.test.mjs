@@ -11,6 +11,10 @@ const cases = [
   { query: "buger", expectedCategory: "food" },
   { query: "burger near me", expectedCategory: "food" },
   { query: "piza", expectedCategory: "food" },
+  { query: "best moisturizer for dry skin", expectedCategory: "skincare" },
+  { query: "cerave cleanser", expectedCategory: "skincare" },
+  { query: "electronics", expectedCategory: "electronics" },
+  { query: "fashion", expectedCategory: "fashion" },
   { query: "western dress", expectedCategory: "fashion" },
   { query: "black western dress", expectedCategory: "fashion" },
 ];

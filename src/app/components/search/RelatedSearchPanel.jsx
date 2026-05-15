@@ -1,12 +1,11 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import {
-  relatedSearches,
-  topSources,
-} from "@/lib/data/mockContent";
 
-export default function RelatedSearchPanel() {
+export default function RelatedSearchPanel({
+  relatedSearches = [],
+  topSources = [],
+}) {
   return (
     <div className="space-y-4">
       <section>

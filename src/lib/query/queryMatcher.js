@@ -54,6 +54,18 @@ const CATEGORY_DICTIONARY = {
   ],
   fashion: [
     {
+      canonical: "fashion",
+      aliases: [
+        "fashion",
+        "style",
+        "clothing",
+        "clothes",
+        "apparel",
+        "wardrobe",
+      ],
+      weight: 0.98,
+    },
+    {
       canonical: "western dress",
       aliases: [
         "western dress",
@@ -86,6 +98,18 @@ const CATEGORY_DICTIONARY = {
   ],
   electronics: [
     {
+      canonical: "electronics",
+      aliases: [
+        "electronics",
+        "electronic",
+        "gadgets",
+        "gadget",
+        "tech",
+        "technology",
+      ],
+      weight: 0.98,
+    },
+    {
       canonical: "phone",
       aliases: ["phone", "mobile", "smartphone", "iphone", "android"],
       weight: 0.95,
@@ -106,6 +130,46 @@ const CATEGORY_DICTIONARY = {
       weight: 0.9,
     },
   ],
+  skincare: [
+    {
+      canonical: "skincare",
+      aliases: [
+        "skincare",
+        "skin care",
+        "skin-care",
+        "skin routine",
+        "routine",
+      ],
+      weight: 0.98,
+    },
+    {
+      canonical: "moisturizer",
+      aliases: [
+        "moisturizer",
+        "moisturizers",
+        "moisturiser",
+        "moisturiser",
+        "cream",
+        "hydrating cream",
+      ],
+      weight: 1,
+    },
+    {
+      canonical: "cleanser",
+      aliases: ["cleanser", "face wash", "facewash", "wash"],
+      weight: 0.95,
+    },
+    {
+      canonical: "serum",
+      aliases: ["serum", "vitamin c", "niacinamide", "retinol", "essence"],
+      weight: 0.95,
+    },
+    {
+      canonical: "sunscreen",
+      aliases: ["sunscreen", "sun screen", "spf", "sunblock"],
+      weight: 0.97,
+    },
+  ],
   news: [
     {
       canonical: "news",
@@ -120,7 +184,7 @@ const CATEGORY_DICTIONARY = {
   ],
 };
 
-const CATEGORY_ORDER = ["food", "fashion", "electronics", "news"];
+const CATEGORY_ORDER = ["food", "fashion", "electronics", "skincare", "news"];
 
 const TOKEN_STOP_WORDS = new Set([
   "a",
@@ -345,6 +409,20 @@ function semanticCategoryBonus(tokens, category) {
     return tokenSet.has("western") ? 0.06 : 0;
   }
 
+  if (category === "skincare") {
+    let bonus = 0;
+
+    if (tokenSet.has("skin")) {
+      bonus += 0.06;
+    }
+
+    if (tokenSet.has("routine") || tokenSet.has("glow")) {
+      bonus += 0.05;
+    }
+
+    return bonus;
+  }
+
   return 0;
 }
 
@@ -401,4 +479,3 @@ export function scoreCategorySignals(queryData) {
     runnerUp: categories[1] || { category: "generic", score: 0, concepts: [] },
   };
 }
-
