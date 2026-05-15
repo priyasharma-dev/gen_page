@@ -1,0 +1,11 @@
+{
+  "layout": "string",
+
+  "components": [
+    {
+      "type": "string",
+
+      "props": "object"
+    }
+  ]
+}
