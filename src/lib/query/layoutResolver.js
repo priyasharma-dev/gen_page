@@ -1,17 +1,17 @@
-import DefaultLayout from "@/app/components/layouts/DefaultLayout";
-import ElectronicsLayout from "@/app/components/layouts/ElectronicsLayout";
-import FashionLayout from "@/app/components/layouts/FashionLayout";
-import FoodLayout from "@/app/components/layouts/FoodLayout";
-import NewsLayout from "@/app/components/layouts/NewsLayout";
-import SkincareLayout from "@/app/components/layouts/SkincareLayout";
+import DefaultLayout from "@/app/core/layout/DefaultLayout";
+import { CATEGORY_REGISTRY } from "@/app/modules/categoryRegistry";
+import NewsLayout from "@/app/modules/news/layouts/NewsLayout";
 
 export const layouts = {
   DefaultLayout,
-  ElectronicsLayout,
-  FashionLayout,
-  FoodLayout,
   NewsLayout,
-  SkincareLayout,
+  ...Object.values(CATEGORY_REGISTRY).reduce((accumulator, categoryModule) => {
+    if (categoryModule.Layout) {
+      accumulator[categoryModule.Layout.name] = categoryModule.Layout;
+    }
+
+    return accumulator;
+  }, {}),
 };
 
 export function getLayoutComponent(layoutName) {

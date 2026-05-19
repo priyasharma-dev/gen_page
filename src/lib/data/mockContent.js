@@ -194,31 +194,35 @@ export const topRatedProducts = [
     reviews: "128",
     image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
     brand: "Zara",
+    logoText: "Z",
   },
   {
     id: "tr-2",
-    title: "Myntra Maxi Dress",
+    title: "Zara Floral Dress",
     price: "₹ 3,980",
     rating: "4.6",
     reviews: "128",
     image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
     brand: "Myntra",
+    logoText: "M",
   },
   {
     id: "tr-3",
-    title: "Rust Desert Dress",
+    title: "Zara Floral Dress",
     price: "₹ 3,980",
     rating: "4.6",
     reviews: "128",
     image: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93",
     brand: "Mango",
+    logoText: "M",
   },
 ];
 
 export const topWebsites = [
-  { rank: 1, name: "Myntra", domain: "Myntra.com", rating: "4.6" },
-  { rank: 2, name: "AJIO", domain: "Ajio.com", rating: "4.5" },
-  { rank: 3, name: "Nykaa Fashion", domain: "Nykaafashion.com", rating: "4.6" },
+  { rank: 1, name: "Myntra", domain: "Myntra.com", rating: "4.6", logoText: "M" },
+  { rank: 2, name: "Myntra", domain: "Myntra.com", rating: "4.6", logoText: "M" },
+  { rank: 3, name: "Myntra", domain: "Myntra.com", rating: "4.6", logoText: "M" },
+  { rank: 4, name: "Myntra", domain: "Myntra.com", rating: "4.6", logoText: "M" },
 ];
 
 export const recentQueriesList = [
@@ -254,6 +258,22 @@ export const fashionInsight = {
   body: "Floral and linen are trending, bodycon is popular for evenings, and pastel shades are in season.",
 };
 
+export const fashionStyleTips = {
+  title: "Quick Style Tips (so it looks expensive)",
+  bullets: [
+    "Go for A-line, midi, or wrap dresses -> flattering on almost everyone",
+    "Stick to neutrals or soft florals for a premium feel",
+    "Pair with clean sneakers / heels + minimal jewelry = instantly elevated look",
+  ],
+};
+
+export const fashionSourcesRow = [
+  { title: "Myntra", domain: "Myntra.com", logoText: "M" },
+  { title: "H&M", domain: "H&M.com", logoText: "H" },
+  { title: "Myntra", domain: "Myntra.com", logoText: "M" },
+  { title: "H&M", domain: "H&M.com", logoText: "H" },
+];
+
 export const conversationalReply = {
   intro:
     "I found 2,400+ western dresses across top platforms. Based on current fashion trends, pricing, and customer ratings, here are the most relevant options under ₹2000. The trick is picking the right style + vibe. Here are some trendy options you can directly shop 👇",
@@ -262,9 +282,9 @@ export const conversationalReply = {
 export const curatedDressSections = [
   {
     id: "section-1",
-    title: "Trending Looks",
+    title: "💖 Trendy & Aesthetic (Pinterest / Soft Girl Vibe)",
     description:
-      "High-impact outfits with directional silhouettes, elevated textures, and social-first energy.",
+      "These give that soft aesthetic / Instagram vibe you like. Great for pics, brunch, casual dates.",
     products: [
       {
         id: "c1",
@@ -277,6 +297,7 @@ export const curatedDressSections = [
         badge: "Trending",
         image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
         tags: ["Soft girl", "Event", "Trending"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c2",
@@ -288,6 +309,7 @@ export const curatedDressSections = [
         reviews: "128",
         image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
         tags: ["Floral", "Vacation", "Daywear"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c3",
@@ -299,14 +321,15 @@ export const curatedDressSections = [
         reviews: "128",
         image: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93",
         tags: ["Statement", "Evening", "Premium"],
+        socialProof: ["M", "a", "+2"],
       },
     ],
   },
   {
     id: "section-2",
-    title: "Celebrity Inspired",
+    title: "🌸 Casual & Everyday Cute Dresses",
     description:
-      "Runway-adjacent pieces with polished color stories, refined drape, and statement finish.",
+      "These are perfect for daily wear-light, comfy, and budget-friendly. Think college, coffee dates, errands.",
     products: [
       {
         id: "c4",
@@ -319,6 +342,7 @@ export const curatedDressSections = [
         badge: "Trending",
         image: "https://images.unsplash.com/photo-1483985988355-763728e1935b",
         tags: ["Casual", "Weekend", "Easy style"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c5",
@@ -330,6 +354,7 @@ export const curatedDressSections = [
         reviews: "211",
         image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
         tags: ["Printed", "Brunch", "Popular"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c6",
@@ -341,12 +366,13 @@ export const curatedDressSections = [
         reviews: "152",
         image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
         tags: ["Midi", "Refined", "Versatile"],
+        socialProof: ["M", "a", "+2"],
       },
     ],
   },
   {
     id: "section-3",
-    title: "Minimal Fits",
+    title: "✨ Minimal Luxury Picks",
     description:
       "Clean tailoring, tonal palettes, and premium basics designed for effortless repeat wear.",
     products: [
@@ -362,6 +388,7 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
         description: "Bias-cut silhouette with matte drape and subtle tailoring for everyday polish.",
         tags: ["Minimal", "Quiet luxury", "Editor pick"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c8",
@@ -374,6 +401,7 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1483985988355-763728e1935b",
         description: "Refined knit layers that balance softness, shape, and all-day comfort.",
         tags: ["Tonal", "Layered", "Premium knit"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c9",
@@ -386,14 +414,15 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
         description: "Satin texture with a pared-back neckline for understated luxury styling.",
         tags: ["Satin", "Evening", "Minimal"],
+        socialProof: ["M", "a", "+2"],
       },
     ],
   },
   {
     id: "section-4",
-    title: "Streetwear",
+    title: "🌙 Date Night Looks",
     description:
-      "Relaxed proportions, bold layering, and city-ready styling for everyday statement looks.",
+      "Sharper silhouettes and elevated textures that look polished after dark without feeling overdone.",
     products: [
       {
         id: "c10",
@@ -407,6 +436,7 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1506629905607-d9a317f6f73c",
         description: "Boxy structure and easy layering potential for casual street styling.",
         tags: ["Utility", "Relaxed", "Street"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c11",
@@ -419,6 +449,7 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
         description: "Sharp blazer lines softened with a modern mini length and bold shoulder.",
         tags: ["Blazer", "Fashion week", "Sharp"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c12",
@@ -431,6 +462,7 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93",
         description: "Functional detailing with fashion-forward proportion for everyday edge.",
         tags: ["Cargo", "Utility", "Citywear"],
+        socialProof: ["M", "a", "+2"],
       },
     ],
   },
@@ -452,6 +484,7 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f",
         description: "Fluid silk construction with minimal seams and elegant evening movement.",
         tags: ["Silk", "Luxury", "Occasion"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c14",
@@ -464,6 +497,7 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
         description: "Soft structured tailoring with refined neutrals and high repeat styling value.",
         tags: ["Tailored", "Refined", "Investment"],
+        socialProof: ["M", "a", "+2"],
       },
       {
         id: "c15",
@@ -476,6 +510,7 @@ export const curatedDressSections = [
         image: "https://images.unsplash.com/photo-1483985988355-763728e1935b",
         description: "Breathable linen texture paired with a sophisticated, resort-inspired silhouette.",
         tags: ["Linen", "Resort", "Timeless"],
+        socialProof: ["M", "a", "+2"],
       },
     ],
   },
@@ -572,9 +607,12 @@ const searchContentByCategory = {
     recentQueries: recentQueriesList,
     relatedSearches,
     topSources,
+    insight: fashionInsight,
+    styleTips: fashionStyleTips,
+    sourcesRow: fashionSourcesRow,
     conversationalReply: {
       intro:
-        "I found strong western-wear matches across top fashion platforms. Based on trend velocity, price bands, and ratings, here are the best fashion results to browse first.",
+        "I found 2,400+ western dresses across top platforms. Based on current fashion trends, pricing, and customer ratings, here are the most relevant options under ₹2000-The trick is picking the right style + vibe. Here are some trendy options you can directly shop 👇",
     },
     sections: curatedDressSections,
   },
@@ -763,6 +801,9 @@ const searchContentByCategory = {
     recentQueries: [],
     relatedSearches: categoryHeroSuggestions.generic,
     topSources: [],
+    insight: null,
+    styleTips: null,
+    sourcesRow: [],
     conversationalReply: {
       intro:
         "I need a bit more context to route this search confidently. Try mentioning the domain, product type, or goal so I can show the right results.",
@@ -775,6 +816,9 @@ const searchContentByCategory = {
     recentQueries: [],
     relatedSearches: categoryHeroSuggestions.generic,
     topSources: [],
+    insight: null,
+    styleTips: null,
+    sourcesRow: [],
     conversationalReply: {
       intro:
         "I can search across skincare, electronics, food, and fashion. Add a product type or goal and I’ll route you to the right result set.",
