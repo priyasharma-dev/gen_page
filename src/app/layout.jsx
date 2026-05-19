@@ -1,8 +1,8 @@
 import "./globals.css";
-import AppShell from "@/app/components/layouts/AppShell";
-import { SearchUIProvider } from "@/app/components/search/SearchUIContext";
-import Sidebar from "@/app/components/ui/Sidebar";
-import InsightSidebar from "@/app/components/search/InsightSidebar";
+import AppShell from "@/app/core/layout/AppShell";
+import InsightSidebar from "@/app/core/search/InsightSidebar";
+import { SearchUIProvider } from "@/app/core/state/SearchUIContext";
+import Sidebar from "@/app/shared/ui/Sidebar";
 
 export const metadata = {
   title: "ANSI",

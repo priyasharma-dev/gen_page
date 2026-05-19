@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import SearchBar from "@/app/components/ui/SearchBar";
+import SearchBar from "@/app/shared/ui/SearchBar";
 
-export default function NewChatPage() {
+function NewChatPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -75,5 +75,13 @@ export default function NewChatPage() {
       </div>
 
     </div>
+  );
+}
+
+export default function NewChatPage() {
+  return (
+    <Suspense fallback={null}>
+      <NewChatPageContent />
+    </Suspense>
   );
 }

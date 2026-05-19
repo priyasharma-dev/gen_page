@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { useSearchUI } from "@/app/components/search/SearchUIContext";
-import SearchWorkspace from "@/app/components/search/SearchWorkspace";
+import SearchWorkspace from "@/app/core/search/SearchWorkspace";
+import { useSearchUI } from "@/app/core/state/SearchUIContext";
 import { resolveQuery } from "@/lib/query/resolver";
 
-export default function Page() {
+function SearchPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { resetRightPanel } = useSearchUI();
@@ -91,5 +91,13 @@ export default function Page() {
       onSearch={handleSearch}
       loading={loading}
     />
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <SearchPageContent />
+    </Suspense>
   );
 }

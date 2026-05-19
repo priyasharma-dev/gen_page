@@ -1,6 +1,6 @@
 "use client";
 
-import FoodCard from "../ui/FoodCard";
+import FoodCard from "@/app/modules/food/components/FoodCard";
 import { recipeItems } from "@/lib/data/mockContent";
 
 export default function RecipeList() {

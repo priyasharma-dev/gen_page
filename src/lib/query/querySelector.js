@@ -54,7 +54,7 @@ export function querySelector(query) {
 }
 
 /**
- * 🧼 Normalize query
+ *  Normalize query
  */
 function normalize(query) {
   return query
