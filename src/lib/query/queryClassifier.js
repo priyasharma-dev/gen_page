@@ -31,9 +31,63 @@ function scoreIntent(queryData) {
   };
 }
 
+function scoreInsuranceIntent(queryData, categorySignals, baseIntent) {
+  const bestCategory = categorySignals?.best?.category;
+
+  if (bestCategory !== "insurance") {
+    return baseIntent;
+  }
+
+  const normalized = String(queryData?.normalized || "").toLowerCase();
+  const tokenSet = new Set([
+    ...(queryData?.tokens || []),
+    ...(queryData?.modifiers || []),
+  ]);
+
+  const compareSignals = [
+    "compare",
+    "quotes",
+    "quote",
+    "provider",
+    "providers",
+    "company",
+    "companies",
+    "best",
+    "cheap",
+    "affordable",
+  ];
+
+  const compareMatches = compareSignals.filter((signal) =>
+    tokenSet.has(signal) || normalized.includes(signal)
+  );
+
+  if (compareMatches.length >= 2) {
+    return {
+      type: "compare",
+      confidence: 0.88,
+    };
+  }
+
+  if (compareMatches.length === 1) {
+    return {
+      type: "compare",
+      confidence: 0.78,
+    };
+  }
+
+  return {
+    type: "search",
+    confidence: Math.max(baseIntent.confidence, 0.62),
+  };
+}
+
 export function classifyQuery(queryData) {
   const categorySignals = scoreCategorySignals(queryData);
-  const intent = scoreIntent(queryData);
+  const intent = scoreInsuranceIntent(
+    queryData,
+    categorySignals,
+    scoreIntent(queryData)
+  );
   const best = categorySignals.best;
   const runnerUp = categorySignals.runnerUp;
   const confidence = best.score;

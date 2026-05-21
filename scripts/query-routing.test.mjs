@@ -17,6 +17,13 @@ const cases = [
   { query: "fashion", expectedCategory: "fashion" },
   { query: "western dress", expectedCategory: "fashion" },
   { query: "black western dress", expectedCategory: "fashion" },
+  { query: "best cheap auto insurance in USA", expectedCategory: "insurance" },
+  { query: "car insurance quotes", expectedCategory: "insurance" },
+  { query: "affordable vehicle insurance", expectedCategory: "insurance" },
+  { query: "best insurance for new drivers", expectedCategory: "insurance" },
+  { query: "compare auto insurance companies", expectedCategory: "insurance" },
+  { query: "best thriller movies to watch tonight", expectedCategory: "movie" },
+  { query: "psychological thriller movies", expectedCategory: "movie" },
 ];
 
 const results = cases.map(({ query, expectedCategory }) => {
@@ -59,6 +66,50 @@ assert.equal(
   lowConfidenceCategory,
   "clarification",
   `Expected low-confidence query to route to clarification, got "${lowConfidenceCategory}".`
+);
+
+const insuranceQueryData = querySelector("best cheap auto insurance in USA");
+const insuranceEntities = entityExtractor(insuranceQueryData);
+const insuranceIntent = intentEngine(insuranceQueryData);
+
+assert.equal(
+  insuranceEntities.matchedCategory,
+  "insurance",
+  `Expected insurance entity extraction to match insurance, got "${insuranceEntities.matchedCategory}".`
+);
+
+assert.equal(
+  insuranceEntities.productType,
+  "auto insurance",
+  `Expected insurance product type to resolve to auto insurance, got "${insuranceEntities.productType}".`
+);
+
+assert.equal(
+  insuranceEntities.location,
+  "USA",
+  `Expected location extraction to resolve to USA, got "${insuranceEntities.location}".`
+);
+
+assert.equal(
+  insuranceIntent.type,
+  "compare",
+  `Expected insurance intent to resolve to compare, got "${insuranceIntent.type}".`
+);
+
+const movieQueryData = querySelector("best thriller movies to watch tonight");
+const movieEntities = entityExtractor(movieQueryData);
+const movieCategory = categoryResolver(movieEntities, intentEngine(movieQueryData), movieQueryData);
+
+assert.equal(
+  movieCategory,
+  "movie",
+  `Expected movie query to resolve to movie, got "${movieCategory}".`
+);
+
+assert.equal(
+  movieEntities.productType,
+  "thriller movies",
+  `Expected movie product type to resolve to thriller movies, got "${movieEntities.productType}".`
 );
 
 console.table(results);

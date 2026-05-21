@@ -522,6 +522,7 @@ const categoryHeroSuggestions = {
     "Top smartphones under ₹30000",
     "Western dresses for woman",
     "Burger places near me",
+    "Best cheap auto insurance in USA",
   ],
   fashion: [
     "Western dresses for woman",
@@ -821,7 +822,7 @@ const searchContentByCategory = {
     sourcesRow: [],
     conversationalReply: {
       intro:
-        "I can search across skincare, electronics, food, and fashion. Add a product type or goal and I’ll route you to the right result set.",
+        "I can search across skincare, electronics, food, fashion, and insurance. Add a product type or goal and I’ll route you to the right result set.",
     },
     sections: [],
   },
