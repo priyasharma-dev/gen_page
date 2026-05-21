@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+:root {
+  --shell-left-offset: 230px;
+  --shell-right-offset: 0px;
+  --search-feed-max-width: 1060px;
+}
+
+/* Right panel open — set data-right-panel-open="true" on <body> */
+[data-right-panel-open="true"] {
+  --shell-right-offset: 420px;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --shell-left-offset: 0px;
+    --shell-right-offset: 0px;
+    --search-feed-max-width: 100%;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -49,6 +68,11 @@ textarea {
   display: none;
 }
 
+/* ─── Shell ────────────────────────────────────────────────────────────────
+   The root flex row that holds: sidebar | main | right-panel
+   Nothing here moves — the sidebar and right panel are positioned
+   independently; only the centre column (main-content-area) flows.
+   ───────────────────────────────────────────────────────────────────────── */
 .app-shell-main {
   display: flex;
   min-height: 100vh;
@@ -56,16 +80,57 @@ textarea {
   overflow: hidden;
 }
 
+/* ─── Centre column ────────────────────────────────────────────────────────
+   Sits between the fixed sidebar and the (optional) right panel.
+   margin-left pushes it clear of the sidebar;
+   margin-right shrinks it when the right panel opens.
+   Both values come from the CSS variables so a single attribute flip
+   on <body> is all that's needed.
+   ───────────────────────────────────────────────────────────────────────── */
+.main-content-area {
+  flex: 1 1 0%;
+  min-width: 0;
+  margin-left: var(--shell-left-offset, 0px);
+  margin-right: var(--shell-right-offset, 0px);
+  transition: margin-right 0.25s ease, margin-left 0.25s ease;
+  position: relative;
+}
+
+/* ─── Feed / content width caps ───────────────────────────────────────────
+   Use .content-frame inside .main-content-area for normal content,
+   .content-frame-wide for edge-to-edge sections.
+   Both stay centred within whatever width the centre column has.
+   ───────────────────────────────────────────────────────────────────────── */
 .content-frame {
   width: 100%;
-  max-width: 72rem;
+  max-width: var(--search-feed-max-width, 1060px);
   margin-inline: auto;
+  padding-inline: 1.5rem;
 }
 
 .content-frame-wide {
   width: 100%;
   max-width: 80rem;
   margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* ─── Floating search bar anchor ──────────────────────────────────────────
+   .floating-search-anchor is a fixed layer that mirrors the centre
+   column exactly. The pill inside it is then centred with .content-frame.
+
+   left  = sidebar width   → never overlaps the sidebar
+   right = panel width     → shrinks when the right panel opens
+   Both transition in sync with .main-content-area.
+   ───────────────────────────────────────────────────────────────────────── */
+.floating-search-anchor {
+  position: fixed;
+  bottom: 20px;
+  left: var(--shell-left-offset, 0px);
+  right: var(--shell-right-offset, 0px);
+  z-index: 50;
+  pointer-events: none;
+  transition: left 0.25s ease, right 0.25s ease;
 }
 
 ::-webkit-scrollbar {

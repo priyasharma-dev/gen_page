@@ -1,63 +1,80 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Check,
-  Circle,
-  Sparkles,
-} from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
+
+const defaultSteps = [
+  "Understanding query",
+  "Analyzing trends",
+  "Scanning 12+ platforms",
+  "Ranking results",
+  "Preparing response",
+];
 
 export default function AIThinkingSteps({
-  steps = [],
+  steps = defaultSteps,
   activeIndex = 0,
+  isDone = false,
 }) {
+  if (isDone) return null;
+
   return (
-    <div className="w-full min-w-0 rounded-[18px] border border-[#DCE7FF] bg-white px-4 py-4 shadow-[0_10px_30px_rgba(15,23,42,0.03)]">
-      <div className="flex min-w-0 flex-col gap-4 lg:flex-row lg:items-center">
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EEF4FF] text-[#3267EB]">
-            <Sparkles size={18} />
-          </div>
-          <p className="break-words text-[15px] font-medium text-gray-700">
-            ANSI is thinking...
-          </p>
-        </div>
-
-        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-4 gap-y-3 lg:justify-between">
-          {steps.map((step, index) => {
-            const complete = index <= activeIndex;
-
-            return (
-              <div
-                key={step}
-                className="flex min-w-0 items-center gap-2"
-              >
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center">
-                  {complete ? (
-                    <Check size={15} className="text-[#3267EB]" />
-                  ) : (
-                    <Circle size={15} className="text-gray-300" />
-                  )}
-                </span>
-                <p
-                  className={`break-words text-[14px] leading-5 ${
-                    complete ? "text-[#3267EB]" : "text-gray-400"
-                  }`}
-                >
-                  {step}
-                </p>
-                {index < steps.length - 1 ? (
-                  <motion.div
-                    className="hidden h-px w-4 shrink-0 bg-[#DCE7FF] lg:block"
-                    initial={{ opacity: 0.4 }}
-                    animate={{ opacity: complete ? 1 : 0.4 }}
-                  />
-                ) : null}
-              </div>
-            );
-          })}
-        </div>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.25 }}
+      className="mx-auto w-full rounded-[20px] border border-[#DCE7FF] bg-white p-5 sm:p-6"
+    >
+      {/* Header */}
+      <div className="mb-4 flex items-center gap-3">
+        <motion.div
+          animate={{ scale: [1, 1.04, 1] }}
+          transition={{ duration: 1.4, repeat: Infinity }}
+          className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-[#EEF4FF] text-[#2563EB]"
+        >
+          <Sparkles size={24} fill="#2563EB" />
+        </motion.div>
+        <p className="text-[17px] font-medium text-[#111827] sm:text-[19px]">
+          ANSI is thinking…
+        </p>
       </div>
-    </div>
+
+      {/* Steps — wrap naturally on small screens */}
+      <div className="flex flex-wrap gap-2">
+        {steps.map((step, index) => {
+          const complete = index <= activeIndex;
+          return (
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.05 }}
+              className={`
+                inline-flex items-center gap-2 rounded-full
+                border px-3 py-1.5 text-[13px] font-medium
+                sm:px-3.5 sm:py-2 sm:text-[14px]
+                ${complete
+                  ? "border-[#C7D9FF] bg-[#EEF4FF] text-[#2563EB]"
+                  : "border-[#E5E7EB] bg-[#F9FAFB] text-[#9CA3AF]"}
+              `}
+            >
+              {complete ? (
+                <motion.span
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: 1 }}
+                  className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-white"
+                >
+                  <Check size={11} strokeWidth={3} />
+                </motion.span>
+              ) : (
+                <span className="h-[18px] w-[18px] shrink-0 rounded-full border-[1.5px] border-[#D1D5DB]" />
+              )}
+              {step}
+            </motion.div>
+          );
+        })}
+      </div>
+    </motion.div>
   );
 }

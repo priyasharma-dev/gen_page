@@ -1,6 +1,6 @@
 "use client";
 
-import SourcesRow from "@/app/shared/sections/SourcesRow";
+import FashionSourcesReferences from "./FashionSourcesReferences";
 
 export default function FashionSupplementalContent({ content }) {
   if (!content?.styleTips) {
@@ -8,10 +8,10 @@ export default function FashionSupplementalContent({ content }) {
   }
 
   return (
-    <div className="mt-8 space-y-9">
+    <div className="mt-10 space-y-10">
       <div className="border-t border-[#D8DCE4]" />
 
-      <div className="max-w-[980px]">
+      <div className="max-w-[960px]">
         <p className="text-[16px] leading-8 text-[#28303E]">
           {content.sections[1]?.description}
         </p>
@@ -19,7 +19,7 @@ export default function FashionSupplementalContent({ content }) {
 
       <div className="border-t border-[#D8DCE4]" />
 
-      <div className="max-w-[980px]">
+      <div className="max-w-[960px]">
         <h4 className="text-[20px] font-semibold tracking-[-0.02em] text-[#151922]">
           💡 {content.styleTips.title}
         </h4>
@@ -34,12 +34,10 @@ export default function FashionSupplementalContent({ content }) {
 
       <div className="border-t border-[#D8DCE4]" />
 
-      {content.sourcesRow?.length ? (
-        <SourcesRow
-          sources={content.sourcesRow}
-          ctaLabel="View all sources (12)"
-        />
-      ) : null}
+      <FashionSourcesReferences
+        sources={content.sourcesRow}
+        ctaLabel="View all sources"
+      />
     </div>
   );
 }
