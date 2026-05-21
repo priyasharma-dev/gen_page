@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 import { desktopRightPanelVariants, mobileRightPanelVariants, panelBackdropVariants } from "@/app/shared/motion/slidePanel";
 import { useCategoryModule } from "@/app/shared/hooks/useCategoryModule";
@@ -17,8 +18,14 @@ export default function AppShell({
     isRightPanelExpanded,
     closeRightPanel,
   } = useSearchUI();
+  const pathname = usePathname();
   const categoryModule = useCategoryModule(activeCategory);
   const panelConfig = categoryModule.config?.rightPanel || {};
+  const shouldForceRightPanel =
+    pathname === "/" && ["insurance", "movie"].includes(activeCategory);
+  const shouldShowRightPanel =
+    isRightPanelOpen || shouldForceRightPanel;
+  const shouldShowMobilePanel = isRightPanelOpen;
   const desktopWidth = isRightPanelExpanded
     ? panelConfig.expandedDesktopWidth || panelConfig.desktopWidth || 390
     : panelConfig.desktopWidth || 390;
@@ -37,12 +44,12 @@ export default function AppShell({
       data-right-panel-open={isRightPanelOpen ? "true" : "false"}
       className="flex h-screen min-h-screen w-full overflow-hidden bg-[#FAFAFC]"
       style={{
-        "--shell-left-offset": "250px",
-        "--shell-right-offset": isRightPanelOpen ? `${desktopWidth}px` : "0px",
+        "--shell-left-offset": "120px",
+        "--shell-right-offset": shouldShowRightPanel ? `${desktopWidth}px` : "0px",
         "--search-feed-max-width": "950px",
       }}
     >
-      <aside className="hidden h-screen w-[250px] shrink-0 overflow-hidden border-r border-[#E8EBF3] bg-white/88 lg:block">
+      <aside className="hidden h-screen w-[120px] shrink-0 overflow-hidden border-r border-[rgba(15,23,42,0.06)] bg-[#F7F8FA] lg:block">
         {sidebar}
       </aside>
 
@@ -53,32 +60,36 @@ export default function AppShell({
       </main>
 
       <AnimatePresence initial={false}>
-        {isRightPanelOpen ? (
+        {shouldShowRightPanel ? (
           <>
-            <motion.div
-              key="right-panel-mobile-backdrop"
-              variants={panelBackdropVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.24, ease: "easeOut" }}
-              className="fixed inset-0 z-40 bg-slate-950/16 backdrop-blur-md lg:hidden"
-              onClick={closeRightPanel}
-            />
+            {shouldShowMobilePanel ? (
+              <>
+                <motion.div
+                  key="right-panel-mobile-backdrop"
+                  variants={panelBackdropVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.24, ease: "easeOut" }}
+                  className="fixed inset-0 z-40 bg-slate-950/16 backdrop-blur-md lg:hidden"
+                  onClick={closeRightPanel}
+                />
 
-            <motion.aside
-              key="right-panel-mobile"
-              variants={mobileRightPanelVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.32, ease: "easeOut" }}
-              className={mobilePanelClass}
-            >
-              <div className="h-full min-w-0 overflow-y-auto overflow-x-hidden">
-                {rightPanel}
-              </div>
-            </motion.aside>
+                <motion.aside
+                  key="right-panel-mobile"
+                  variants={mobileRightPanelVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.32, ease: "easeOut" }}
+                  className={mobilePanelClass}
+                >
+                  <div className="h-full min-w-0 overflow-y-auto overflow-x-hidden">
+                    {rightPanel}
+                  </div>
+                </motion.aside>
+              </>
+            ) : null}
 
             <motion.aside
               key="right-panel-desktop"

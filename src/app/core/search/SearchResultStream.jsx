@@ -33,7 +33,10 @@ export default function SearchResultStream({
 
   const category = resolvedQuery?.category || "generic";
   const categoryModule = useCategoryModule(category);
-  const content = useMemo(() => categoryModule.getSearchExperienceContent(), [categoryModule]);
+  const content = useMemo(
+    () => categoryModule.getSearchExperienceContent(query, resolvedQuery),
+    [categoryModule, query, resolvedQuery]
+  );
   const {
     activeExplorer,
     openRightPanel,
@@ -43,6 +46,7 @@ export default function SearchResultStream({
   const InsightsComponent = categoryModule.Insights;
   const PostSectionsComponent = categoryModule.PostSections;
   const ResponseComponent = categoryModule.ResponseComponent;
+  const ContentComponent = categoryModule.ContentComponent;
   const streamConfig = categoryModule.config?.stream || {};
 
   const introText =
@@ -66,6 +70,7 @@ export default function SearchResultStream({
             <ResponseComponent
               text={introText}
               currentTime={currentTime}
+              content={content}
             />
           ) : (
             <>
@@ -97,31 +102,39 @@ export default function SearchResultStream({
           </div>
         ) : null}
 
-        <div className={`w-full ${streamConfig.sectionsGapClass || "space-y-9"}`}>
-          {content.sections.map((section, index) => (
-            <div key={section.id} className="w-full min-w-0">
-              <motion.div
-                variants={fadeUpVariants}
-                initial="initial"
-                animate="animate"
-                transition={fadeUpTransition(index * 0.08)}
-              >
-                <ScrollableRecommendationRow
-                  category={category}
-                  title={section.title}
-                  description={section.description}
-                  products={section.products}
-                  onSelectCard={openRightPanel}
-                />
-              </motion.div>
-              {streamConfig.sectionDividerClass && index < content.sections.length - 1 ? (
-                <div className={streamConfig.sectionDividerClass} />
-              ) : null}
-            </div>
-          ))}
-        </div>
+        {ContentComponent ? (
+          <ContentComponent
+            content={content}
+            query={query}
+            resolvedQuery={resolvedQuery}
+          />
+        ) : (
+          <div className={`w-full ${streamConfig.sectionsGapClass || "space-y-9"}`}>
+            {content.sections.map((section, index) => (
+              <div key={section.id} className="w-full min-w-0">
+                <motion.div
+                  variants={fadeUpVariants}
+                  initial="initial"
+                  animate="animate"
+                  transition={fadeUpTransition(index * 0.08)}
+                >
+                  <ScrollableRecommendationRow
+                    category={category}
+                    title={section.title}
+                    description={section.description}
+                    products={section.products}
+                    onSelectCard={openRightPanel}
+                  />
+                </motion.div>
+                {streamConfig.sectionDividerClass && index < content.sections.length - 1 ? (
+                  <div className={streamConfig.sectionDividerClass} />
+                ) : null}
+              </div>
+            ))}
+          </div>
+        )}
 
-        {PostSectionsComponent ? <PostSectionsComponent content={content} /> : null}
+        {PostSectionsComponent ? <PostSectionsComponent content={content} query={query} /> : null}
       </div>
     </div>
   );

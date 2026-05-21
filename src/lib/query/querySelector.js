@@ -19,6 +19,7 @@ export function querySelector(query) {
     "best",
     "top",
     "cheap",
+    "affordable",
     "under",
     "latest",
     "new",

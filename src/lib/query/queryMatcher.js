@@ -130,6 +130,73 @@ const CATEGORY_DICTIONARY = {
       weight: 0.9,
     },
   ],
+  insurance: [
+    {
+      canonical: "auto insurance",
+      aliases: [
+        "auto insurance",
+        "car insurance",
+        "vehicle insurance",
+        "insurance quotes",
+        "auto insurance quotes",
+        "car insurance quotes",
+        "auto insurance companies",
+        "car insurance companies",
+        "auto insurance providers",
+        "compare auto insurance companies",
+        "new driver insurance",
+        "insurance for new drivers",
+      ],
+      weight: 1,
+    },
+    {
+      canonical: "insurance",
+      aliases: [
+        "insurance",
+        "coverage plan",
+        "coverage plans",
+        "policy",
+        "policies",
+        "insurance providers",
+        "insurance companies",
+        "cheap insurance",
+        "affordable insurance",
+        "best insurance",
+      ],
+      weight: 0.94,
+    },
+  ],
+  movie: [
+    {
+      canonical: "thriller movies",
+      aliases: [
+        "thriller movie",
+        "thriller movies",
+        "psychological thriller",
+        "psychological thrillers",
+        "crime thriller",
+        "suspense movie",
+        "suspenseful movies",
+        "mind bending movies",
+        "twist ending movies",
+      ],
+      weight: 1,
+    },
+    {
+      canonical: "movie",
+      aliases: [
+        "movie",
+        "movies",
+        "film",
+        "films",
+        "watch tonight",
+        "imdb",
+        "rotten tomatoes",
+        "netflix movies",
+      ],
+      weight: 0.9,
+    },
+  ],
   skincare: [
     {
       canonical: "skincare",
@@ -184,7 +251,7 @@ const CATEGORY_DICTIONARY = {
   ],
 };
 
-const CATEGORY_ORDER = ["food", "fashion", "electronics", "skincare", "news"];
+const CATEGORY_ORDER = ["food", "fashion", "electronics", "insurance", "movie", "skincare", "news"];
 
 const TOKEN_STOP_WORDS = new Set([
   "a",
@@ -418,6 +485,37 @@ function semanticCategoryBonus(tokens, category) {
 
     if (tokenSet.has("routine") || tokenSet.has("glow")) {
       bonus += 0.05;
+    }
+
+    return bonus;
+  }
+
+  if (category === "insurance") {
+    let bonus = 0;
+
+    if (tokenSet.has("insurance") || tokenSet.has("coverage")) {
+      bonus += 0.08;
+    }
+
+    if (
+      tokenSet.has("quote") ||
+      tokenSet.has("quotes") ||
+      tokenSet.has("provider") ||
+      tokenSet.has("providers") ||
+      tokenSet.has("company") ||
+      tokenSet.has("companies")
+    ) {
+      bonus += 0.08;
+    }
+
+    if (
+      tokenSet.has("auto") ||
+      tokenSet.has("car") ||
+      tokenSet.has("vehicle") ||
+      tokenSet.has("driver") ||
+      tokenSet.has("drivers")
+    ) {
+      bonus += 0.08;
     }
 
     return bonus;

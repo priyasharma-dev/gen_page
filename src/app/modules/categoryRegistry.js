@@ -6,6 +6,8 @@ import { getHeroSuggestions, getSearchExperienceContent } from "@/lib/data/mockC
 import electronics from "./electronics";
 import fashion from "./fashion";
 import food from "./food";
+import insurance from "./insurance";
+import movie from "./movie";
 import news from "./news";
 import skincare from "./skincare";
 
@@ -38,6 +40,8 @@ export const CATEGORY_REGISTRY = {
   fashion,
   food,
   electronics,
+  insurance,
+  movie,
   skincare,
   news,
 };

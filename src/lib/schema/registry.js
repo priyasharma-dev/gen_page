@@ -66,6 +66,32 @@ export const schemaRegistry = {
             },
         ],
     },
+    insurance: {
+        layout: "InsuranceLayout",
+
+        components: [
+            {
+                type: "hero",
+            },
+
+            {
+                type: "productGrid",
+            },
+        ],
+    },
+    movie: {
+        layout: "MovieLayout",
+
+        components: [
+            {
+                type: "hero",
+            },
+
+            {
+                type: "productGrid",
+            },
+        ],
+    },
     skincare: {
         layout: "SkincareLayout",
 
