@@ -42,6 +42,7 @@ export default function SearchResultStream({
   const ExplorerComponent = categoryModule.Explorer || ExpandedProductExplorer;
   const InsightsComponent = categoryModule.Insights;
   const PostSectionsComponent = categoryModule.PostSections;
+  const ResponseComponent = categoryModule.ResponseComponent;
   const streamConfig = categoryModule.config?.stream || {};
 
   const introText =
@@ -61,15 +62,24 @@ export default function SearchResultStream({
             ANSI
           </p>
 
-          <div className={`${streamConfig.introMarginTopClass || "mt-3"} min-w-0 max-w-[980px]`}>
-            <StreamingResponse
+          {ResponseComponent ? (
+            <ResponseComponent
               text={introText}
+              currentTime={currentTime}
             />
-          </div>
+          ) : (
+            <>
+              <div className={`${streamConfig.introMarginTopClass || "mt-3"} min-w-0 max-w-[980px]`}>
+                <StreamingResponse
+                  text={introText}
+                />
+              </div>
 
-          <p className="mt-3 text-[14px] text-[#A1A9B7]">
-            {currentTime}
-          </p>
+              <p className="mt-3 text-[14px] text-[#A1A9B7]">
+                {currentTime}
+              </p>
+            </>
+          )}
         </div>
       </motion.div>
 
@@ -89,21 +99,25 @@ export default function SearchResultStream({
 
         <div className={`w-full ${streamConfig.sectionsGapClass || "space-y-9"}`}>
           {content.sections.map((section, index) => (
-            <motion.div
-              key={section.id}
-              variants={fadeUpVariants}
-              initial="initial"
-              animate="animate"
-              transition={fadeUpTransition(index * 0.08)}
-            >
-              <ScrollableRecommendationRow
-                category={category}
-                title={section.title}
-                description={section.description}
-                products={section.products}
-                onSelectCard={openRightPanel}
-              />
-            </motion.div>
+            <div key={section.id} className="w-full min-w-0">
+              <motion.div
+                variants={fadeUpVariants}
+                initial="initial"
+                animate="animate"
+                transition={fadeUpTransition(index * 0.08)}
+              >
+                <ScrollableRecommendationRow
+                  category={category}
+                  title={section.title}
+                  description={section.description}
+                  products={section.products}
+                  onSelectCard={openRightPanel}
+                />
+              </motion.div>
+              {streamConfig.sectionDividerClass && index < content.sections.length - 1 ? (
+                <div className={streamConfig.sectionDividerClass} />
+              ) : null}
+            </div>
           ))}
         </div>
 

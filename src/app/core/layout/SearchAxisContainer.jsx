@@ -1,18 +1,21 @@
+// src/app/core/layout/SearchAxisContainer.jsx
 "use client";
 
-import { useSearchUI } from "@/app/core/state/SearchUIContext";
-
-export default function SearchAxisContainer({
-  children,
-  className = "",
-}) {
-  const { isRightPanelOpen } = useSearchUI();
-
+/**
+ * SearchAxisContainer
+ *
+ * ONLY centres and caps content width.
+ * Offset awareness (sidebar / right panel) lives in globals.css via
+ * .floating-search-anchor (left/right CSS props) — NOT here.
+ *
+ * Usage:
+ *   <SearchAxisContainer>…content…</SearchAxisContainer>
+ */
+export default function SearchAxisContainer({ children, className = "" }) {
   return (
     <div
-      className={`mx-auto w-full min-w-0 px-5 pb-0 pt-0 lg:px-10 ${
-        isRightPanelOpen ? "max-w-[920px]" : "max-w-[1180px]"
-      } ${className}`.trim()}
+      className={`mx-auto w-full px-6 ${className}`}
+      style={{ maxWidth: "var(--search-feed-max-width, 1060px)" }}
     >
       {children}
     </div>

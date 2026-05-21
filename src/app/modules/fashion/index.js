@@ -1,6 +1,8 @@
 import FashionExplorer from "./components/FashionExplorer";
 import FashionInsights from "./components/FashionInsights";
 import FashionProductCard from "./components/FashionProductCard";
+import FashionResponseBlock from "./components/FashionResponseBlock";
+import FashionRightSidebar from "./components/FashionRightSidebar";
 import FashionSection from "./components/FashionSection";
 import FashionSupplementalContent from "./components/FashionSupplementalContent";
 import fashionConfig from "./config/fashionConfig";
@@ -13,6 +15,8 @@ const fashionModule = {
   label: "Fashion",
   ProductCard: FashionProductCard,
   Explorer: FashionExplorer,
+  RightSidebar: FashionRightSidebar,
+  ResponseComponent: FashionResponseBlock,
   Filters: null,
   Layout: FashionLayout,
   RecommendationSection: FashionSection,

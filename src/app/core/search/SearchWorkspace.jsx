@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import ConversationalSearchLayout from "@/app/core/layout/ConversationalSearchLayout";
 import SearchAxisContainer from "@/app/core/layout/SearchAxisContainer";
+import { useSearchUI } from "@/app/core/state/SearchUIContext";
 import { useCategoryModule } from "@/app/shared/hooks/useCategoryModule";
 
 import SearchConversation from "./SearchConversation";
@@ -18,11 +19,17 @@ export default function SearchWorkspace({
 }) {
   const hasQuery = Boolean(activeQuery?.trim());
   const activeCategory = resolvedQuery?.category || "generic";
+  const { setActiveCategory } = useSearchUI();
   const categoryModule = useCategoryModule(activeCategory);
   const heroSuggestions = useMemo(
     () => categoryModule.getHeroSuggestions(),
     [categoryModule]
   );
+  const searchWorkspaceConfig = categoryModule.config?.workspace || {};
+
+  useEffect(() => {
+    setActiveCategory(activeCategory);
+  }, [activeCategory, setActiveCategory]);
 
   return (
     <ConversationalSearchLayout
@@ -48,7 +55,7 @@ export default function SearchWorkspace({
         </SearchAxisContainer>
       }
       thread={
-        <SearchAxisContainer>
+        <SearchAxisContainer className={searchWorkspaceConfig.threadContainerClass || ""}>
           <SearchConversation
             query={activeQuery}
             resolvedQuery={resolvedQuery}

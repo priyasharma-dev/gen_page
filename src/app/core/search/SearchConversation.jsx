@@ -7,6 +7,8 @@ import {
   User2,
 } from "lucide-react";
 
+import { useCategoryModule } from "@/app/shared/hooks/useCategoryModule";
+
 import SearchResultStream from "./SearchResultStream";
 import AIThinkingSteps from "./AIThinkingSteps";
 import SearchProgress from "./SearchProgress";
@@ -24,6 +26,9 @@ export default function SearchConversation({
   resolvedQuery,
   loading,
 }) {
+  const activeCategory = resolvedQuery?.category || "generic";
+  const categoryModule = useCategoryModule(activeCategory);
+  const conversationConfig = categoryModule.config?.conversation || {};
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -48,22 +53,39 @@ export default function SearchConversation({
   }, [loading]);
 
   return (
-    <div className="mx-auto flex w-full min-w-0 flex-col gap-5">
+    <div className={`mx-auto flex w-full min-w-0 flex-col ${conversationConfig.wrapperClass || "gap-5"}`}>
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex w-full min-w-0 justify-end"
       >
-        <div className="flex w-full min-w-0 items-start justify-end gap-3">
-          <div className="min-w-0 max-w-[980px] rounded-[18px] bg-[#EEF4FF] px-5 py-4 text-[#253040] shadow-sm">
-            <p className="break-words text-[15px] leading-6">
-              {query}
+        <div className="flex w-full min-w-0 items-start justify-end gap-2">
+          <div className="flex min-w-0 flex-col items-end">
+            <div
+              className={`
+        min-w-0
+        max-w-[460px]
+        rounded-[28px]
+        rounded-tr-[6px]
+        bg-[#EEF4FF]
+        px-8
+        py-4
+        text-[#172133]
+        ${conversationConfig.userBubbleClass || ""}
+      `}
+            >
+              <p className="break-words text-base font-normal leading-[1.25] tracking-[-0.02em]">
+                {query}
+              </p>
+            </div>
+
+            <p className="mt-4 text-right text-sm font-normal leading-none text-[#9AA4B5]">
+              10:42 AM
             </p>
-            <p className="mt-2 text-right text-xs text-gray-400">10:42 AM</p>
           </div>
 
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F58AD8] text-white">
-            <User2 size={18} />
+          <span className="mt-0 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EF6FD0] text-white">
+            <User2 size={24} strokeWidth={2.4} />
           </span>
         </div>
       </motion.div>
@@ -72,10 +94,10 @@ export default function SearchConversation({
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.05 }}
-        className="flex w-full min-w-0 flex-col gap-5"
+        className={`flex w-full min-w-0 flex-col ${conversationConfig.assistantStackClass || "gap-5"}`}
       >
-        <div className="flex min-w-0 items-start gap-3">
-          <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#EEF4FF] text-[#3267EB]">
+        <div className={`flex min-w-0 items-start ${conversationConfig.assistantRowClass || "gap-3"}`}>
+          <span className={`shrink-0 items-center justify-center rounded-full bg-[#EEF4FF] text-[#3267EB] ${conversationConfig.assistantIconClass || "mt-1 flex h-8 w-8"}`}>
             <Bot size={15} />
           </span>
           {loading ? (

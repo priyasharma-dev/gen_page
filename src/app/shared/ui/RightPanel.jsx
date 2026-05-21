@@ -13,8 +13,10 @@ export default function RightPanel() {
   const {
     selectedProduct,
     isRightPanelOpen,
+    isRightPanelExpanded,
     closeRightPanel,
     openExplorer,
+    toggleRightPanelExpanded,
   } = useSearchUI();
   const query = searchParams.get("q") || searchParams.get("query") || "";
   const category = useMemo(() => {
@@ -26,12 +28,15 @@ export default function RightPanel() {
   }, [query]);
   const categoryModule = useCategoryModule(category);
   const content = useMemo(() => categoryModule.getSearchExperienceContent(), [categoryModule]);
+  const SidebarComponent = categoryModule.RightSidebar || RightSidebar;
 
   return (
-    <RightSidebar
+    <SidebarComponent
       isOpen={isRightPanelOpen}
+      isExpanded={isRightPanelExpanded}
       onClose={closeRightPanel}
       onOpenExplorer={openExplorer}
+      onToggleExpand={toggleRightPanelExpanded}
       selectedProduct={selectedProduct}
       topRatedProducts={content.topRatedProducts}
       topWebsites={content.topWebsites}
